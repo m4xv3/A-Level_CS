@@ -1,7 +1,5 @@
-# Make a character class with 3 subclasses - Warrior, Elfin, Wizord. Warrior: Health, axe, Higher Strength. Elf: Health, speed. Wizard: Health, Magic. 
-# Two characters fight, attacks generate (random) damage on health, when health reaches 0, winner is declared.
-# Print status of characters, attack value (damage)
 import random
+from main import Brawler1, Brawler2
 class Character():
     def __init__(self, name, weapon, damage, health = 100, dodge = random.randint(0, 1), pos_expression = "YEHAW", neg_expression = "YEOW"):
         self.name = name
@@ -62,8 +60,9 @@ class Character():
                 print(f"{Brawler1.name} dodged the attack!")
                 print(Brawler1.pos_expression)
 
-
-
+    def isdead(self):
+        if self.health == 0:
+            return True
 
 class Wizard(Character):
     def __init__(self, pos_expression = "YEHAW", neg_expression = "YEOW"):
@@ -82,18 +81,3 @@ class Warrior(Character):
         super().__init__("Warrior", "Cutlass", random.randint(30, 55))
         self.pos_expression = pos_expression
         self.neg_expression = neg_expression
-
-
-Choice1 = input("Choose your first player")
-Choice2 = input("Choose your second player")
-characters= {
-    "Wizard": Wizard(),
-    "Elf" : Elf(),
-    "Warrior" : Warrior()
-}
-Brawler1 = characters[Choice1]       
-Brawler2 = characters[Choice2]
-print("Round 1")
-
-
-        
