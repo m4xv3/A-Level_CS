@@ -11,80 +11,128 @@ class Character():
         self.pos_expression = pos_expression
         self.neg_expression = neg_expression
 
-    def brawl1(self):
-        if isinstance(brawler1, Wizard):
-            if random.randint(0,1) == 1:
-                brawler2.health -= brawler1.damage
-                print(f"{brawler2}: {brawler2.neg_expression}")
-                print(f"{brawler2.name} health: {brawler2.health}")
-            else:
-                print(f"{brawler2} dodged the attack!")
-                print(f"{brawler2}: {brawler2.pos_expression}")
+    def isdead(self):
+        if self.health <= 0:
+            return True
 
-        elif isinstance(brawler1, Elf):
-            if random.randint(0,1) == 1:
-                brawler2.health -= brawler1.damage
-                print(f"{brawler2}: {brawler2.neg_expression}")
-                print(f"{brawler2.name} health: {brawler2.health}")
-            else:
-                print(f"{brawler2.name} dodged the attack!")
-                print(f"{brawler2}: {brawler2.pos_expression}")               
-        elif isinstance(brawler1, Warrior):
-            if random.randint(0,1) == 1:
-                brawler2.health -= brawler1.damage
-                print(f"{brawler2}: {brawler2.neg_expression}")
-                print(f"{brawler2.name} health: {brawler2.health}")
-            else:
-                print(f"{brawler2.name} dodged the attack!")
-                print(f"{brawler2}: {brawler2.neg_expression}")
+    def brawl1(self):
+        count = 0
+        while not brawler1.isdead() and not brawler2.isdead():
+            count += 1
+            time.sleep(1)
+            print("\n")
+            print("-" * 30)
+            print("\n")
+            print(f"Round: {count}")
+            print("\n")
+            print("-" * 30)
+            time.sleep(1)
+            if isinstance(brawler1.name, Wizard):
+                if random.randint(0,1) == 1:
+                    brawler2.health -= brawler1.damage
+                    print(f"{brawler2.name}: {brawler2.neg_expression}")
+                    time.sleep(1)
+                    print(f"{brawler2.name} health: {brawler2.health}")
+                    time.sleep(1)
+                else:
+                    print(f"{brawler2.name} dodged the attack!")
+                    time.sleep(1)
+                    print(f"{brawler2.name}: {brawler2.pos_expression}")
+                    time.sleep(1)
+
+            elif isinstance(brawler1, Elf):
+                if random.randint(0,1) == 1:
+                    brawler2.health -= brawler1.damage
+                    print(f"{brawler2.name}: {brawler2.neg_expression}")
+                    time.sleep(1)
+                    print(f"{brawler2.name} health: {brawler2.health}")
+                    time.sleep(1)
+                else:
+                    print(f"{brawler2.name} dodged the attack!")
+                    time.sleep(1)
+                    print(f"{brawler2.name}: {brawler2.pos_expression}")  
+                    time.sleep(1)             
+            elif isinstance(brawler1, Warrior):
+                if random.randint(0,1) == 1:
+                    brawler2.health -= brawler1.damage
+                    print(f"{brawler2.name}: {brawler2.neg_expression}")
+                    time.sleep(1)
+                    print(f"{brawler2.name} health: {brawler2.health}")
+                    time.sleep(1)
+                else:
+                    print(f"{brawler2.name} dodged the attack!")
+                    time.sleep(1)
+                    print(f"{brawler2.name}: {brawler2.neg_expression}")
+                    time.sleep(1)
 
     def brawl2(self):
-        if isinstance(brawler2, Wizard):
-            if random.randint(0,1) == 1:
-                brawler1.health -= brawler2.damage
-                print(brawler1.neg_expression)
-                print(f"{brawler1.name} health: {brawler1.health}")
-            else:
-                print(f"{brawler1.name} dodged the attack!")
-                print(brawler1.pos_expression)
-        elif isinstance(brawler2, Elf):
-            if random.randint(0,1) == 1:
-                brawler1.health -= brawler2.damage 
-                print(brawler1.neg_expression)
-                print(f"{brawler1.name} health: {brawler1.health}")
-            else:
-                print(f"{brawler1.name} dodged the attack!")
-                print(brawler1.pos_expression)
-        elif isinstance(brawler2, Warrior):
-            if random.randint(0,1) == 1:
-                brawler1.health -= brawler2.damage
-                print(f"{brawler1.name} dodged the attack!")
-                print(brawler1.pos_expression)
+        count = 0
+        while brawler1.health > 0 and brawler2.health > 0:
+            count += 1
+            time.sleep(1)
+            print("\n")
+            print("-" * 30)
+            print("\n")
+            print(f"Round: {count}")
+            print("\n")
+            print("-" * 30)
+            time.sleep(1)
+            if isinstance(brawler2.name, Wizard):
+                if random.randint(0,1) == 1:
+                    brawler1.health -= brawler2.damage
+                    print(f"{brawler1.name}: {brawler1.neg_expression}")
+                    time.sleep(1)
+                    print(f"{brawler1.name} health: {brawler1.health}")
+                    time.sleep(1)
+                    print(f"{brawler2.name} health: {brawler2.health}")
+                    time.sleep(1)
+                else:
+                    print(f"{brawler1.name} dodged the attack!")
+                    time.sleep(1)
+                    print(brawler1.pos_expression)
+                    time.sleep(1)
+            elif isinstance(brawler2.name, Elf):
+                if random.randint(0,1) == 1:
+                    brawler1.health -= brawler2.damage 
+                    print(brawler1.neg_expression)
+                    time.sleep(1)
+                    print(f"{brawler1.name} health: {brawler1.health}")
+                    time.sleep(1)
+                else:
+                    print(f"{brawler1.name} dodged the attack!")
+                    time.sleep(1)
+                    print(brawler1.pos_expression)
+                    time.sleep(1)
+            elif isinstance(brawler2.name, Warrior):
+                if random.randint(0,1) == 1:
+                    brawler1.health -= brawler2.damage
+                    print(f"{brawler1.name} dodged the attack!")
+                    time.sleep(1)
+                    print(brawler1.pos_expression)
+                    time.sleep(1)
 
     def selection():
         characters_dict = {
-            "Wizard": Wizard(),
-            "Elf" : Elf(),
-            "Warrior" : Warrior()
+            "wizard": Wizard(),
+            "elf" : Elf(),
+            "warrior" : Warrior()
             }
         selection_loop = True
         while selection_loop:
-            choice1 = input("Choose your first player (Warrior, Elf, Wizard): \n")
+            choice1 = input("Choose your first player (Warrior, Elf, Wizard): \n").strip().lower()
             if choice1 in characters_dict:
                 selection_loop = False
             else:
                 print("Invalid Selection. Please try again.")
         selection_loop = True
         while selection_loop:
-            choice2 = input("Choose your second player (Warrior, Elf, Wizard): \n")
+            choice2 = input("Choose your second player (Warrior, Elf, Wizard): \n").strip().lower()
             if choice2 in characters_dict:
                 selection_loop = False
             else:
                 print("Invalid Selection. Please try again.")
         return characters_dict[choice1], characters_dict[choice2]
 
-
-brawler1, brawler2 = Character.selection()
 
 
 
@@ -106,4 +154,6 @@ class Warrior(Character):
         super().__init__("Warrior", "Cutlass", random.randint(30, 55))
         self.pos_expression = pos_expression
         self.neg_expression = neg_expression
+
+brawler1, brawler2 = Character.selection()
 
